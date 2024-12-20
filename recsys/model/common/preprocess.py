@@ -26,8 +26,8 @@ class Preprocess():
     ):
         result = [
             {
-                'antecedent': list(antecedent),
-                'consequent': list(consequent),
+                'antecedent': antecedent,
+                'consequent': consequent,
                 'confidence': confidence
             }
 

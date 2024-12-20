@@ -1,5 +1,6 @@
 import pandas as pd
 import logging
+import pickle
 
 from typing import List
 from schemas import RepositorySchema
@@ -17,9 +18,7 @@ class Repository:
     ):
         LOGGER.info("Repository is CREATED.")
 
-        self.playlist_1_path = schema.playlist_1_path
-        self.playlist_2_path = schema.playlist_2_path
-        self.songs_path = schema.songs_path
+        self.playlist_path = schema.playlist_path
 
     def get_songs_df(self) -> pd.DataFrame:
 
@@ -27,10 +26,7 @@ class Repository:
 
     def get_playlists_df(self) -> pd.DataFrame:
 
-        spotify_playlists_1 = pd.read_csv(self.playlist_1_path).dropna()
-        spotify_playlists_2 = pd.read_csv(self.playlist_2_path).dropna()
-
-        spotify_playlists = pd.concat([spotify_playlists_1, spotify_playlists_2], ignore_index=True).drop_duplicates()
+        spotify_playlists = pd.read_csv(self.playlist_path).dropna()
 
         return spotify_playlists
     
@@ -59,4 +55,20 @@ class Repository:
         sample = self.create_model_sample(playlists_df)
 
         return sample
+    
+    def export_results(
+        self,
+        rules_df: pd.DataFrame,
+        freq_itemset_df: pd.DataFrame
+    ):
+        
+        data_to_save = {
+            'frequent_itemsets': freq_itemset_df,
+            'rules': rules_df,
+        }
+
+        with open('fpgrowth_results.pkl', 'wb') as f:
+            pickle.dump(data_to_save, f)
+
+
 
