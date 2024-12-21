@@ -1,10 +1,8 @@
-from controller.fetcher import FetcherController
+from api.controller.fetcher import FetcherController
 
 class Factory:
     def __init__(self):
         pass
 
-    def get_fetcher_controller():
+    async def get_fetcher_controller(self):
         return FetcherController()
-
-factory = Factory()

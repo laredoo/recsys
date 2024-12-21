@@ -5,5 +5,5 @@ from recsys.api.config import settings
 
 class FetcherResponseModel(BaseModel):
     songs: List
-    version: str = settings.PROJECT_VERSION
+    version: str = settings.RELEASE_VERSION
     model_date: str
