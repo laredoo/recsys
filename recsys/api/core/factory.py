@@ -1,4 +1,4 @@
-from api.controller.fetcher import FetcherController
+from controller.fetcher import FetcherController
 
 class Factory:
     def __init__(self):

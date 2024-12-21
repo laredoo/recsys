@@ -3,9 +3,9 @@ import pandas as pd
 from typing import List, Dict
 from collections import defaultdict
 
-from api.schemas.request.fetcher import FetcherRequestModel
+from schemas.request.fetcher import FetcherRequestModel
 
-from api.schemas.response.fetcher import FetcherResponseModel
+from schemas.response.fetcher import FetcherResponseModel
 
 
 class FetcherController:

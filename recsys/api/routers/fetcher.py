@@ -1,15 +1,15 @@
 from typing import Any
 from fastapi import APIRouter, Depends
 
-from api.core.factory import Factory
+from core.factory import Factory
 
-from api.controller.fetcher import FetcherController
+from controller.fetcher import FetcherController
 
-from api.schemas.request.fetcher import FetcherRequestModel
+from schemas.request.fetcher import FetcherRequestModel
 
-from api.schemas.response.fetcher import FetcherResponseModel
+from schemas.response.fetcher import FetcherResponseModel
 
-from recsys.api.core.dependencies import get_model_data
+from core.dependencies import get_model_data
 
 fetcher_router = APIRouter()
 

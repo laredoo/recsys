@@ -7,10 +7,10 @@ from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.middleware import Middleware
 
-from .routers import router
-from .config import settings
+from routers import router
+from config import settings
 
-file_path = "./recsys/api/project2-pv2/fpgrowth_results.pkl"
+file_path = "./project2-pv2/fpgrowth_results.pkl"
 
 def init_routers(app_: FastAPI) -> None:
     app_.include_router(router)
