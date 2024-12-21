@@ -1,7 +1,7 @@
 import logging
 import os
 
-from root import Factory
+from core import Factory
 from schemas import (
     ModelSchema,
     RepositorySchema
