@@ -17,7 +17,7 @@ def main():
 
         LOGGER.info("Creating REPOSITORY")
 
-        playlist_path = os.getenv('PLAYLIST_PATH', './dataset/2023_spotify_ds1.csv')
+        playlist_path = os.environ['PLAYLIST_PATH']
         if not os.path.exists(playlist_path):
                 LOGGER.error(f"Playlist file not found: {playlist_path}")
                 raise FileNotFoundError(f"Playlist file not found: {playlist_path}")

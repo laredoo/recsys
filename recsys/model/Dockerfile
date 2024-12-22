@@ -1,7 +1,5 @@
 FROM python:3.12.8-slim-bookworm
 
-ENV PLAYLIST_PATH '../dataset/2023_spotify_ds1.csv'
-
 RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
     libpq-dev \
