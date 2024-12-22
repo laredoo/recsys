@@ -1,16 +1,12 @@
 import uvicorn
 import pickle
 
-from typing import Any
-
-from fastapi import FastAPI, Request
+from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.middleware import Middleware
 
 from routers import router
 from config import settings
-
-file_path = "./project2-pv2/fpgrowth_results.pkl"
 
 def init_routers(app_: FastAPI) -> None:
     app_.include_router(router)
@@ -22,7 +18,7 @@ app = FastAPI(
 )
 
 def carregar_pkl():
-    with open(file_path, "rb") as f:
+    with open(settings.RULES_PATH, "rb") as f:
         dados = pickle.load(f)
     return dados
     

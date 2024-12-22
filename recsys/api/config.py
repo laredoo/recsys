@@ -1,3 +1,5 @@
+import os
+
 from pydantic_settings import BaseSettings
 from typing import List
 
@@ -6,8 +8,9 @@ class Settings(BaseSettings):
     RELEASE_VERSION: str = "1.0.0"
     PROJECT_DESCRIPTION: str = "A modern recommendation system"
     
-    # CORS settings
     ALLOWED_ORIGINS: List[str] = ["http://localhost:3000"]
+
+    RULES_PATH = os.environ['RULES_PATH']
     
     class Config:
         env_file = ".env"
