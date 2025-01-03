@@ -25,7 +25,7 @@ def main():
         repository = factory.create_repository(
             RepositorySchema(
                 **{
-                    'playlist_path': './dataset/2023_spotify_ds1.csv',
+                    'playlist_path': playlist_path,
                 }
             )
         )
