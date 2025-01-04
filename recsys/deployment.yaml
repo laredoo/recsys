@@ -12,26 +12,28 @@ spec:
       labels:
         app: lucaslaredo-playlist-recommender
     spec:
-      containers:
+      initContainers:
       - name: lucaslaredo-playlist-recommender-model
-        image: laredoo/playlists-recommender-system-model
-        volumeMounts:  
+        image: laredoo/playlists-recommender-system-model:0.1
+        volumeMounts:
         - name: data-volume
-          mountPath: /project2-pv2/
+          mountPath: /model/data
         env:
         - name: PLAYLIST_PATH
-          value: "./project2-pv2/2023_spotify_ds1.csv"
-      # api
+          value: "./model/data/2023_spotify_ds1.csv"
+        - name: EXPORT_PATH
+          value: "./app/data/rules.pkl"
+      containers:
       - name: lucaslaredo-playlist-recommender-api
         image: laredoo/playlists-recommender-system-api
         ports:
         - containerPort: 52045
         volumeMounts:  
         - name: data-volume
-          mountPath: /project2-pv2/
+          mountPath: /app/data
         env:
         - name: RULES_PATH
-          value: "./project2-pv2/fpgrowth_results.pkl"
+          value: "./app/data/rules.pkl"
       volumes:
       - name: data-volume
         persistentVolumeClaim:

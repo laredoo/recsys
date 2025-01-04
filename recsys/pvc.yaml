@@ -4,9 +4,15 @@ metadata:
   name: project2-pv2-lucaslaredo
   namespace: lucaslaredo
 spec:
+  storageClassName: default-storage-class-lucaslaredo
   accessModes:
     - ReadWriteMany
   resources:
     requests:
       storage: 700Mi
-  storageClassName: default-storage-class-lucaslaredo
+  selector:
+    matchLabels:
+      type: hostPath
+      namespace: lucaslaredo
+  volumeName: project2-pv2-lucaslaredo
+  
