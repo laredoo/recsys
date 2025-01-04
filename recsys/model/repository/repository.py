@@ -1,3 +1,4 @@
+import os
 import pandas as pd
 import logging
 import pickle
@@ -59,7 +60,8 @@ class Repository:
     def export_results(
         self,
         rules_df: pd.DataFrame,
-        freq_itemset_df: pd.DataFrame
+        freq_itemset_df: pd.DataFrame,
+        export_path: str
     ):
         
         data_to_save = {
@@ -67,7 +69,7 @@ class Repository:
             'rules': rules_df,
         }
 
-        with open('fpgrowth_results.pkl', 'wb') as f:
+        with open(export_path, 'wb') as f:
             pickle.dump(data_to_save, f)
 
 

@@ -18,6 +18,8 @@ def main():
         LOGGER.info("Creating REPOSITORY")
 
         playlist_path = os.environ['PLAYLIST_PATH']
+        export_path = os.environ['EXPORT_PATH']
+
         if not os.path.exists(playlist_path):
                 LOGGER.error(f"Playlist file not found: {playlist_path}")
                 raise FileNotFoundError(f"Playlist file not found: {playlist_path}")
@@ -47,7 +49,7 @@ def main():
 
         LOGGER.info("Exporting results")
         rules_df, freq_itemset_df = model.get_model_df(freq_itemset_sample, rules_sample)
-        repository.export_results(rules_df, freq_itemset_df)
+        repository.export_results(rules_df, freq_itemset_df, export_path)
     except Exception as e:
         LOGGER.error(f"An error occurred: {e}", exc_info=True)
 
