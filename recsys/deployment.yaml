@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: lucaslaredo-playlist-recommender-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: lucaslaredo-playlist-recommender
+  template:
+    metadata:
+      labels:
+        app: lucaslaredo-playlist-recommender
+    spec:
+      containers:
+      - name: lucaslaredo-playlist-recommender-model
+        image: laredoo/playlists-recommender-system-model
+        volumeMounts:  
+        - name: data-volume
+          mountPath: /project2-pv2/
+        env:
+        - name: PLAYLIST_PATH
+          value: "./project2-pv2/2023_spotify_ds1.csv"
+      # api
+      - name: lucaslaredo-playlist-recommender-api
+        image: laredoo/playlists-recommender-system-api
+        ports:
+        - containerPort: 52045
+        volumeMounts:  
+        - name: data-volume
+          mountPath: /project2-pv2/
+        env:
+        - name: RULES_PATH
+          value: "./project2-pv2/fpgrowth_results.pkl"
+      volumes:
+      - name: data-volume
+        persistentVolumeClaim:
+          claimName: project2-pv2-lucaslaredo  
