@@ -78,6 +78,8 @@ class FetcherController:
             rules_df=model_data['rules']
         )
 
-        return songs_recommendation
+        model_date = model_data['model_date']
+
+        return songs_recommendation, model_date
 
     

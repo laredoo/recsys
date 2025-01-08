@@ -67,6 +67,7 @@ class Repository:
         data_to_save = {
             'frequent_itemsets': freq_itemset_df,
             'rules': rules_df,
+            'model_date': pd.Timestamp.now()
         }
 
         with open(export_path, 'wb') as f:

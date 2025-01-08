@@ -20,12 +20,12 @@ async def read_items(
     fetcher_controller: FetcherController = Depends(Factory().get_fetcher_controller),
 ):
     
-    songs = fetcher_controller.get_recommendations(model_data, request)
+    songs, model_date = fetcher_controller.get_recommendations(model_data, request)
 
     return FetcherResponseModel(
         **{
             'songs': songs,
-            'model_date': 'now'
+            'model_date': model_date
         }
     )
 
