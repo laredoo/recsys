@@ -17,12 +17,12 @@ spec:
         image: laredoo/playlists-recommender-system-model:0.1
         volumeMounts:
         - name: data-volume
-          mountPath: /model/data
+          mountPath: /shared/data
         env:
         - name: PLAYLIST_PATH
-          value: "./model/data/2023_spotify_ds1.csv"
+          value: "/shared/data/2023_spotify_ds1.csv"
         - name: EXPORT_PATH
-          value: "./app/data/rules.pkl"
+          value: "/shared/data/rules.pkl"
       containers:
       - name: lucaslaredo-playlist-recommender-api
         image: laredoo/playlists-recommender-system-api
@@ -30,11 +30,11 @@ spec:
         - containerPort: 52045
         volumeMounts:  
         - name: data-volume
-          mountPath: /app/data
+          mountPath: /shared/data
         env:
         - name: RULES_PATH
-          value: "./app/data/rules.pkl"
+          value: "/shared/data/rules.pkl"
       volumes:
       - name: data-volume
         persistentVolumeClaim:
-          claimName: project2-pv2-lucaslaredo  
+          claimName: project2-pv2-lucaslaredo
