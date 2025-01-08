@@ -1,7 +1,7 @@
 import os
 
 from pydantic_settings import BaseSettings
-from typing import List
+from typing import List, ClassVar
 
 class Settings(BaseSettings):
     PROJECT_NAME: str = "RecSys API"
@@ -10,7 +10,7 @@ class Settings(BaseSettings):
     
     ALLOWED_ORIGINS: List[str] = ["http://localhost:3000"]
 
-    RULES_PATH = os.environ['RULES_PATH']
+    RULES_PATH: ClassVar[str] = os.environ['RULES_PATH']
     
     class Config:
         env_file = ".env"
