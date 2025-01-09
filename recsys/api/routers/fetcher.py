@@ -25,7 +25,7 @@ async def read_items(
     return FetcherResponseModel(
         **{
             'songs': songs,
-            'model_date': model_date
+            'model_date': model_date.strftime('%Y-%m-%d %H:%M:%S')
         }
     )
 
