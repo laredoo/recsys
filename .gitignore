@@ -9,7 +9,6 @@ __pycache__/
 *.db
 
 # Data Files
-*.csv
 *.pkl
 
 # Virtual environments
