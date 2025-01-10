@@ -9,6 +9,8 @@ from schemas import (
 
 LOGGER = logging.getLogger(__name__)
 
+# testing changes
+
 def main():
     try:
         LOGGER.info("The Model is STARTED.")
