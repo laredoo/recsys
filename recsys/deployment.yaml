@@ -14,7 +14,7 @@ spec:
     spec:
       initContainers:
       - name: lucaslaredo-playlist-recommender-model
-        image: laredoo/playlists-recommender-system-model:0.1
+        image: laredoo/playlists-recommender-system-model:latest
         volumeMounts:
         - name: data-volume
           mountPath: /shared/data
