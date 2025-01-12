@@ -24,7 +24,7 @@ jobs:
 
     - name: Update deployment.yaml
       run: |
-        python update_deployment.py
+        python ./recsys/update_deployment.py
 
     - name: Commit and push changes
       run: |
