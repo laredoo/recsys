@@ -21,14 +21,11 @@ jobs:
     - name: Install PyYAML
       run: |
         python -m pip install pyyaml
-    
-    - name : Changing directory
-      run: |
-        cd recsys
-        ls
 
     - name: Update deployment.yaml
       run: |
+        cd recsys
+        ls
         python ./recsys/update_deployment.py
 
     - name: Commit and push changes
