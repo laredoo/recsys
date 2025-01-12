@@ -20,7 +20,10 @@ spec:
           mountPath: /shared/data
         env:
         - name: PLAYLIST_PATH
-          value: "/shared/data/2023_spotify_ds1.csv"
+          valueFrom:
+            configMapKeyRef:
+              name: playlist-dataset-config
+              key: PLAYLIST_PATH
         - name: EXPORT_PATH
           value: "/shared/data/rules.pkl"
       containers:
