@@ -1,0 +1,37 @@
+name: Update Deployment
+
+on:
+  push:
+    branches:
+      - k8-files-test
+
+jobs:
+  update-deployment:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+
+    - name: Install PyYAML
+      run: |
+        python -m pip install pyyaml
+
+    - name: Update deployment.yaml
+      run: |
+        python update_deployment.py
+
+    - name: Commit and push changes
+      run: |
+        git config --global user.name 'github-actions[bot]'
+        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+        git add deployment.yaml
+        git commit -m "Atualizar metadata.name do deployment.yaml com o valor de PLAYLIST_PATH do configmap.yaml"
+        git push
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
