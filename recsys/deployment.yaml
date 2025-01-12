@@ -2,12 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: lucaslaredo-playlist-recommender-deployment
-  annotations:
-    argocd-image-updater.argoproj.io/image-list: |
-      lucaslaredo-playlist-recommender-model=laredoo/playlists-recommender-system-model
-      lucaslaredo-playlist-recommender-api=laredoo/playlists-recommender-system-api
-    argocd-image-updater.argoproj.io/lucaslaredo-playlist-recommender-model.update-strategy: semver
-    argocd-image-updater.argoproj.io/lucaslaredo-playlist-recommender-api.update-strategy: semver
 spec:
   replicas: 1
   selector:
@@ -20,7 +14,7 @@ spec:
     spec:
       initContainers:
       - name: lucaslaredo-playlist-recommender-model
-        image: laredoo/playlists-recommender-system-model:latest
+        image: laredoo/playlists-recommender-system-model
         volumeMounts:
         - name: data-volume
           mountPath: /shared/data
@@ -31,7 +25,7 @@ spec:
           value: "/shared/data/rules.pkl"
       containers:
       - name: lucaslaredo-playlist-recommender-api
-        image: laredoo/playlists-recommender-system-api:latest
+        image: laredoo/playlists-recommender-system-api
         ports:
         - containerPort: 52045
         volumeMounts:  
