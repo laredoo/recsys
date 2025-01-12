@@ -38,4 +38,4 @@ jobs:
         git commit -m "Atualizar metadata.name do deployment.yaml com o valor de PLAYLIST_PATH do configmap.yaml"
         git push
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.TOKEN }}
