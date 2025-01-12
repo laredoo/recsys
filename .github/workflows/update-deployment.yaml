@@ -1,4 +1,20 @@
-uses: actions/setup-python@v2
+name: Update Deployment
+
+on:
+  push:
+    branches:
+      - k8-files-test
+
+jobs:
+  update-deployment:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
       with:
         python-version: '3.x'
 
