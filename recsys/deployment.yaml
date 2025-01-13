@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: lucaslaredo-playlist-recommender-deployment
+  name: 2023_spotify_ds2
 spec:
   replicas: 1
   selector:
@@ -12,31 +12,31 @@ spec:
       labels:
         app: lucaslaredo-playlist-recommender
     spec:
-      initContainers:
-      - name: lucaslaredo-playlist-recommender-model
-        image: laredoo/playlists-recommender-system-model
+      containers:
+      - env:
+        - name: RULES_PATH
+          value: /shared/data/rules.pkl
+        image: laredoo/playlists-recommender-system-api
+        name: lucaslaredo-playlist-recommender-api
+        ports:
+        - containerPort: 52045
         volumeMounts:
-        - name: data-volume
-          mountPath: /shared/data
-        env:
+        - mountPath: /shared/data
+          name: data-volume
+      initContainers:
+      - env:
         - name: PLAYLIST_PATH
           valueFrom:
             configMapKeyRef:
-              name: playlist-dataset-config
               key: PLAYLIST_PATH
+              name: playlist-dataset-config
         - name: EXPORT_PATH
-          value: "/shared/data/rules.pkl"
-      containers:
-      - name: lucaslaredo-playlist-recommender-api
-        image: laredoo/playlists-recommender-system-api
-        ports:
-        - containerPort: 52045
-        volumeMounts:  
-        - name: data-volume
-          mountPath: /shared/data
-        env:
-        - name: RULES_PATH
-          value: "/shared/data/rules.pkl"
+          value: /shared/data/rules.pkl
+        image: laredoo/playlists-recommender-system-model
+        name: lucaslaredo-playlist-recommender-model
+        volumeMounts:
+        - mountPath: /shared/data
+          name: data-volume
       volumes:
       - name: data-volume
         persistentVolumeClaim:
