@@ -3,7 +3,7 @@ name: Update Deployment
 on:
   push:
     branches:
-      - k8-files-test
+      - k8-files
 
 jobs:
   update-deployment:
