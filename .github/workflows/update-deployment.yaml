@@ -36,7 +36,7 @@ jobs:
         git config --global user.email 'luckrocaabh@gmail.com'
         git add deployment.yaml
         git commit -m "Atualizar metadata.name do deployment.yaml com o valor de PLAYLIST_PATH do configmap.yaml"
-        git remote set-url --push origin https://laredoo:$TOKEN@github.com/laredoo/recsys
+        git remote set-url --push origin https://laredoo:${{ secrets.TOKEN }}@github.com/laredoo/recsys
         git push
       env:
-        GITHUB_TOKEN: ${{ secrets.TOKEN }}
+        PERSONAL_ACCESS_TOKEN: ${{ secrets.TOKEN }}
