@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: lucaslaredo-playlist-recommender-deployment
+  name: lucaslaredo-playlist-recommender-deployment-2023-spotify-ds1
 spec:
   replicas: 1
   selector:
