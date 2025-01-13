@@ -16,6 +16,8 @@ spec:
       - env:
         - name: RULES_PATH
           value: /shared/data/rules.pkl
+        - name: OUTPUT_PATH
+          value: /shared/data/output.json
         image: laredoo/playlists-recommender-system-api
         name: lucaslaredo-playlist-recommender-api
         ports:
