@@ -4,4 +4,4 @@ metadata:
   name: playlist-dataset-config
   namespace: lucaslaredo
 data:
-  PLAYLIST_PATH: "/shared/data/2023_spotify_ds2.csv"
+  PLAYLIST_PATH: "/shared/data/2023_spotify_ds1.csv"
