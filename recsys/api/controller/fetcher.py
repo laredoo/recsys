@@ -6,6 +6,8 @@ from collections import defaultdict
 from schemas.request.fetcher import FetcherRequestModel
 
 from schemas.response.fetcher import FetcherResponseModel
+import os
+import json
 
 
 class FetcherController:
@@ -81,5 +83,21 @@ class FetcherController:
         model_date = model_data['model_date']
 
         return songs_recommendation, model_date
+    
+    def save_recommendations(self, songs: List, model_date) -> None:
+
+        output_dir = os.environ['OUTPUT_PATH']
+
+        recommendations = {
+            'songs': songs,
+            'model_version': '0.11',
+            'model_date': model_date.strftime('%Y-%m-%d %H:%M:%S')
+        }
+
+        if not output_dir:
+            raise ValueError("Output path environment variable is not set")
+
+        with open(output_dir, 'w') as f:
+            json.dump(recommendations, f, indent=4)
 
     

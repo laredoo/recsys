@@ -22,6 +22,8 @@ async def read_items(
     
     songs, model_date = fetcher_controller.get_recommendations(model_data, request)
 
+    fetcher_controller.save_recommendations(songs, model_date)
+
     return FetcherResponseModel(
         **{
             'songs': songs,
