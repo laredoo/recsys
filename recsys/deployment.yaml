@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: 2023_spotify_ds2
+  name: 2023_spotify_ds1
 spec:
   replicas: 1
   selector:
