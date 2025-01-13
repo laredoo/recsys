@@ -36,6 +36,6 @@ jobs:
         git config --global user.email 'luckrocaabh@gmail.com'
         git add deployment.yaml
         git commit -m "Atualizar metadata.name do deployment.yaml com o valor de PLAYLIST_PATH do configmap.yaml"
-        git push https://laredoo:${{ secrets.TOKEN }}@github.com/laredoo/recsys HEAD:k8-files-test
+        git push https://laredoo:${{ secrets.TOKEN }}@github.com/laredoo/recsys HEAD:k8-files
       env:
         TOKEN: ${{ secrets.TOKEN }}
