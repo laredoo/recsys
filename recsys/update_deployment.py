@@ -9,6 +9,8 @@ dataset_name = playlist_path.split('/')[-1].split('.')[0]
 with open('deployment.yaml', 'r') as f:
     deployment = yaml.safe_load(f)
 
+dataset_name = dataset_name.replace('_', '-')
+
 deployment['metadata']['name'] = f"lucaslaredo-playlist-recommender-deployment-{dataset_name}"
 
 with open('deployment.yaml', 'w') as f:
